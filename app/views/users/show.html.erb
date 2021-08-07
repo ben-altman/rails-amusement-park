@@ -1,4 +1,12 @@
+
+<strong><%= is_admin %></strong><br/><br/>
 <strong>Name: </strong><p><%= @user.name %></p>
 <strong>Tickets: </strong><p><%= @user.tickets %></p>
 <strong>Mood: </strong><p><%= @user.mood %></p>
 <strong>Height: </strong><p><%= @user.height %> inches</p>
+<br/>
+<%= link_to "See attractions", attractions_path %>
+
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>

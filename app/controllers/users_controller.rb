@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-
+    before_action :require_logged_in, only: [:show]
     def show
         # byebug
-        @user = User.find_by(:id => (params[:id]))
+        @user = User.find_by(id: params[:id])
     end
 
     def new
@@ -11,11 +11,9 @@ class UsersController < ApplicationController
 
    
     def create
-        # raise.params
+        user = User.create(user_params)
 
-        user = User.new(user_params)
-
-        if user.save
+        if user.valid?
             session[:user_id] = user.id
             redirect_to user_path(user.id)
         else
